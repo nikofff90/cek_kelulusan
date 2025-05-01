@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cek Kelulusan</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      text-align: center;
+      padding: 50px;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 400px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, button {
+      padding: 10px;
+      width: 80%;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Pengumuman Kelulusan</h2>
+    <p>Masukkan NISN Anda</p>
+    <input type="text" id="nisnInput" placeholder="NISN">
+    <button onclick="cekKelulusan()">Cek</button>
+    <div class="result" id="hasil"></div>
+  </div>
+
+  <script>
+    const dataKelulusan = {
+      "1234567890": { nama: "Ahmad", status: "LULUS" },
+      "0987654321": { nama: "Siti", status: "TIDAK LULUS" }
+      // Tambahkan data lain di sini
+    };
+
+    function cekKelulusan() {
+      const nisn = document.getElementById("nisnInput").value;
+      const hasilDiv = document.getElementById("hasil");
+      const data = dataKelulusan[nisn];
+
+      if (data) {
+        hasilDiv.innerHTML = `Nama: ${data.nama}<br>Status Kelulusan: <strong>${data.status}</strong>`;
+        hasilDiv.style.color = data.status === "LULUS" ? "green" : "red";
+      } else {
+        hasilDiv.innerHTML = "Data tidak ditemukan.";
+        hasilDiv.style.color = "gray";
+      }
+    }
+  </script>
+</body>
+</html>
